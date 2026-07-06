@@ -6,27 +6,28 @@
 Car::Car() {
     this->long_velocity = 0.0f;
     this->lat_velocity = 0.0f;
-    this->acceleration = 1800.0f;
-    this->deceleration = 3600.0f;
+    this->acceleration = 100.0f;
+    this->deceleration = 200.0f;
     this->maxSpeed = 150.0f;
     this->x = 200.0f;
     this->y = 200.0f;
     this->rotation = 0.0f;
     this->rotationSpeed = 0.0f;
-    this->maxEngineForce = 12000.0f;
+    this->maxEngineForce = 800.0f;
     this->engineForce = 0.0f;
-    this->C_drag = 0.3f;
-    this->C_rr = 12.0f;
-    this->Lf = 1.2f;
-    this->Lr = 1.2f;
+    this->C_drag = 0.1f;
+    this->C_rr = 0.01f;
+    this->Lf = 1;
+    this->Lr = 1;
     this->wheel_angle = 0.0f;
-    this->Cr = 25000.0f;
-    this->Cf = 25000.0f;
+    this->Cr = 95.0f;
+    this->Cf = 100.0f;
     this->width = 1.5f;
     this->height = 4.8f;
-    this->mass = 1200.0f;
-    this->i = (1.0f / 12.0f) * mass * (width * width + height * height);
+    this->mass = 10.0f;
+    this->i = 3;
 }
+
 
 
 void Car::setRotation(float rotation) {

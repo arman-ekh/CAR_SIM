@@ -41,6 +41,10 @@ int main() {
             car.setWheelAngle(car.getWheelAngle() * 0.8f);
         }
 
+        if (IsKeyDown(KEY_SPACE)) {
+            car.setEngineForce(0);
+        }
+
         car.setLongVelocity(car.getLongVelocity() + car.getLongAcc() * dt);
         car.setLatVelocity(car.getLatVelocity() + car.getLatAcc() * dt);
 
