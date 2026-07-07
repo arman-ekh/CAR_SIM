@@ -6,26 +6,26 @@
 Car::Car() {
     this->long_velocity = 0.0f;
     this->lat_velocity = 0.0f;
-    this->acceleration = 100.0f;
-    this->deceleration = 200.0f;
-    this->maxSpeed = 150.0f;
+    this->acceleration = 200.0f;
+    this->deceleration = 400.0f;
     this->x = 200.0f;
     this->y = 200.0f;
     this->rotation = 0.0f;
     this->rotationSpeed = 0.0f;
     this->maxEngineForce = 800.0f;
     this->engineForce = 0.0f;
-    this->C_drag = 0.1f;
+    this->C_drag = 0.2f;
     this->C_rr = 0.01f;
-    this->Lf = 1;
+    this->Lf = 1.5;
     this->Lr = 1;
     this->wheel_angle = 0.0f;
-    this->Cr = 95.0f;
+    this->Cr = 65.0f;
     this->Cf = 100.0f;
-    this->width = 1.5f;
+    this->width = 1.0f;
     this->height = 4.8f;
     this->mass = 10.0f;
-    this->i = 3;
+    this->i = 60.0f;
+    this->max_steer = 0.85f;
 }
 
 
@@ -52,7 +52,6 @@ float Car::getEngineForce() { return this->engineForce; }
 
 
 void Car::setWheelAngle(float wheel_angle) {
-    float max_steer = 0.6f;
     if (wheel_angle > max_steer) this->wheel_angle = max_steer;
     else if (wheel_angle < -max_steer) this->wheel_angle = -max_steer;
     else this->wheel_angle = wheel_angle;
@@ -60,15 +59,18 @@ void Car::setWheelAngle(float wheel_angle) {
 
 float Car::getWheelAngle() { return this->wheel_angle; }
 
-float Car::getLongVelocity() { return long_velocity; }
-void Car::setLongVelocity(float long_velocity) { this->long_velocity = long_velocity; }
+float Car::getLongVelocity() {
+    return long_velocity;
+}
+void Car::setLongVelocity(float long_velocity) {
+    this->long_velocity = long_velocity;
+}
 float Car::getLatVelocity() {return  lat_velocity;}
 void Car::setLatVelocity(float lat_v) { this->lat_velocity = lat_v; }
 
 
 float Car::getDragForce() {
-    float velocity = getLongVelocity();
-    return -1.0f * C_drag * velocity * std::abs(velocity);
+    return -1.0f * C_drag * long_velocity * std::abs(long_velocity);
 }
 
 float Car::getRrForce() {
@@ -76,7 +78,11 @@ float Car::getRrForce() {
 }
 
 float Car::getLongForce() {
-    return getRrForce() + getDragForce() + engineForce;
+    float long_force = getRrForce() + getDragForce() + engineForce;
+    if (std::abs(long_force) < 3 ) {
+        return 0;
+    }
+    return long_force;
 }
 
 float Car::geLatVelocityFrontWheel() {

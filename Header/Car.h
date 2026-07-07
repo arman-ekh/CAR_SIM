@@ -11,7 +11,6 @@ class Car {
         float long_velocity , lat_velocity ;
         float acceleration ;
         float deceleration ;
-        float maxSpeed ;
         float x , y ,rotation;
         float rotationSpeed;
         float wheel_angle;
@@ -22,6 +21,7 @@ class Car {
         float Cr , Cf;//Cornering stiffness front/rear
         float mass , width , height;
         float i;//Rotational Inertia
+        float max_steer ;
         float getDragForce();
         float getRrForce();
 
@@ -31,9 +31,10 @@ class Car {
         float getSlipAngleBack();
         float getLatForceFront();
         float getLatForceBack();
-        float getLongForce();
+
     public:
         Car();
+        float getLongForce();
         float getAcceleration();
         float getDeceleration();
         void setX(float x);
