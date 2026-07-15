@@ -44,11 +44,11 @@ int main() {
         } else if (IsKeyDown(KEY_D)) {
             car.setWheelAngle(car.getWheelAngle() + 4.0f * dt);
         } else {
-            car.setWheelAngle(car.getWheelAngle() * 0.99f);
+            car.setWheelAngle(car.getWheelAngle() * 0.95f);
         }
 
-        if (IsKeyDown(KEY_SPACE)) {
-            car.setEngineForce(0);
+        if (IsKeyPressed(KEY_SPACE)) {
+            car.setIsBreaking(!car.getIsBreaking());
         }
 
 
@@ -86,12 +86,14 @@ int main() {
         std::string carForce = "car long Force: " + std::to_string(car.getLongForce());
         std::string carX = "car x: " + std::to_string(car.getX());
         std::string carY = "car y: " + std::to_string(car.getY());
+        std::string carIsBreaking = "car Break: " + std::to_string(car.getIsBreaking());
 
         DrawText(carLongVelocity.c_str(), 10, 10, 20, BLACK);
         DrawText(latVelocity.c_str(), 10, 35, 20, BLACK);
         DrawText(carForce.c_str(), 10, 60, 20, BLACK);
         DrawText(carX.c_str(), 10, 80, 20, BLACK);
         DrawText(carY.c_str(), 10, 100, 20, BLACK);
+        DrawText(carIsBreaking.c_str(), 10, 120, 20, BLACK);
 
 
         rectangle.x = car.getX();

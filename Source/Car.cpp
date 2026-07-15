@@ -24,11 +24,18 @@ Car::Car() {
     this->width = 1.0f;
     this->height = 4.8f;
     this->mass = 10.0f;
-    this->i = 60.0f;
+    this->i = 24.0f;
     this->max_steer = 0.85f;
+    this->isBreaking = false;
 }
 
+void Car::setIsBreaking(bool breaking) {
+    this->isBreaking = breaking;
+}
 
+bool Car::getIsBreaking() {
+    return this->isBreaking;
+}
 
 void Car::setRotation(float rotation) {
     if (rotation > 2.0f * PI) {
@@ -113,6 +120,9 @@ float Car::getLatForceFront() {
 }
 
 float Car::getLatForceBack() {
+    if (isBreaking) {
+        return -1.0f * getSlipAngleBack() * Cr * 200;
+    }
     return -1.0f * getSlipAngleBack() * Cr;
 }
 

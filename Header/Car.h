@@ -8,6 +8,7 @@
 
 class Car {
     private:
+        bool isBreaking ;
         float long_velocity , lat_velocity ;
         float acceleration ;
         float deceleration ;
@@ -56,6 +57,8 @@ class Car {
         float getAngularAcceleration();
         float getLongVelocity();
         float getLatVelocity();
+        void setIsBreaking(bool breaking);
+        bool getIsBreaking();
 
 
 
