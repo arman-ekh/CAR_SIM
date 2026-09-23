@@ -18,7 +18,7 @@ class Car {
 
 
     public:
-        const float max_long_force =40;
+        const float max_long_force =45;
         const float acceleration = 20;
         const float deceleration = 20;
         const float max_wheel_rotation = 50;
